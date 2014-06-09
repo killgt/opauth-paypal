@@ -28,7 +28,7 @@ Required parameters:
 
 ```php
 <?php
-'PayPal' => array(
+'Paypal' => array(
 	'app_id' => 'YOUR APP ID',
 	'app_secret' => 'YOUR APP SECRET'
 )
