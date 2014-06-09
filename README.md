@@ -1,6 +1,6 @@
-Opauth-Facebook
+Opauth-Paypal
 =============
-[Opauth][1] strategy for Facebook authentication.
+[Opauth][1] strategy for Paypal authentication.
 
 Implemented based on https://www.x.com/developers/paypal/documentation-tools/quick-start-guides/oauth-integration-paypal-access-getting
 

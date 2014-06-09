@@ -2,22 +2,22 @@
 /**
  * Facebook strategy for Opauth
  * based on https://www.x.com/developers/paypal/documentation-tools/quick-start-guides/oauth-integration-paypal-access-getting-page-2
- * 
+ *
  * More information on Opauth: http://opauth.org
- * 
+ *
  * @copyright    Copyright © 2012 U-Zyn Chua (http://uzyn.com)
  * @link         http://opauth.org
  * @package      Opauth.PaypalStrategy
  * @license      MIT License
  */
 class PaypalStrategy extends OpauthStrategy{
-	
+
 	/**
 	 * Compulsory config keys, listed as unassociative arrays
 	 * eg. array('app_id', 'app_secret');
 	 */
 	public $expects = array('app_id', 'app_secret');
-	
+
 	/**
 	 * Optional config keys with respective default values, listed as associative arrays
 	 * eg. array('scope' => 'email');
@@ -43,7 +43,7 @@ class PaypalStrategy extends OpauthStrategy{
 		if (!empty($this->strategy['display'])) $params['display'] = $this->strategy['display'];
 		$this->clientGet($url, $params);
 	}
-	
+
 	/**
 	 * Internal callback, after Paypal's OAuth
 	 */
@@ -59,7 +59,7 @@ class PaypalStrategy extends OpauthStrategy{
 			);
 			$response = $this->serverPost($url, $params, null, $headers);
 			$results = json_decode($response, true);
-			
+
 			if (!empty($results) && !empty($results['access_token'])){
 
 				$me = $this->me($results['access_token']);
@@ -73,12 +73,12 @@ class PaypalStrategy extends OpauthStrategy{
 					),
 					'raw' => $me
 				);
-				
+
 				/**
 				 * TODO
 				 * - I am unable to query any user detail from profile/me
 				 */
-				
+
 				$this->callback();
 			}
 			else{
@@ -99,15 +99,15 @@ class PaypalStrategy extends OpauthStrategy{
 				'message' => $_GET['error_description'],
 				'raw' => $_GET
 			);
-			
+
 			$this->errorCallback($error);
 		}
 	}
-	
+
 	/**
 	 * Queries PayPal Identity.x for user info
 	 *
-	 * @param string $access_token 
+	 * @param string $access_token
 	 * @return array Parsed JSON results
 	 */
 	private function me($access_token){
